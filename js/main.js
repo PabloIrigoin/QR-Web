@@ -65,4 +65,14 @@ document.addEventListener("DOMContentLoaded", function() {
     navCollapse.addEventListener('hidden.bs.collapse', function () {
         navbarToggler.classList.remove('collapsed'); // Volver a estado hamburguesa
     });
+
+    // Agregar esta función para reducir el menú al hacer scroll
+    const navbar = document.querySelector('header.navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('navbar-reducido');
+        } else {
+            navbar.classList.remove('navbar-reducido');
+        }
+    });
 });
