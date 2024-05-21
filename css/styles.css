@@ -225,17 +225,6 @@ header.navbar {
     transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Tamaño reducido del header y logotipo al hacer scroll */
-header.navbar.scrolled {
-    padding: 5px 0; /* Reduce el padding para hacer el header más pequeño */
-    transition: all 0.3s ease; 
-}
-
-header.navbar.scrolled .qr-logo {
-    width: 150px; /* Reduce el tamaño del logo */
-    transition: width 0.3s ease;
-}
-
 /* BUTTONS */
 
 .btn-main {
@@ -562,6 +551,7 @@ footer {
     .icon-down-custom {
         display: flex;
         width: 40px;
+        margin-bottom: 230px;
         color:var(--color-white);
         transition: all 0.35s;
     }
