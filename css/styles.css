@@ -562,4 +562,10 @@ footer {
     
 }
 
+@media (max-height: 800px) {
+    .icon-down-custom {
+        display: none;
+    }
+}
+
 
