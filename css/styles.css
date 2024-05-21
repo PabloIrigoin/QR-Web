@@ -256,7 +256,7 @@ button.navbar-toggler:focus {
 
 .content-wrap {
     position: relative;
-    padding: 80px 0;
+    padding: 115px 0;
     overflow: hidden;
 }
 
@@ -544,9 +544,6 @@ footer {
     .description-img {
         padding-bottom: 30px;
     }
-    .content-wrap {
-        padding: 30px 0px;
-    }
 
     .icon-down-custom {
         display: flex;
@@ -564,6 +561,10 @@ footer {
 
 @media (max-height: 800px) {
     .icon-down-custom {
+        display: none;
+    }
+
+    .aurora {
         display: none;
     }
 }
