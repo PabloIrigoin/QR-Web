@@ -227,15 +227,14 @@ header.navbar {
 
 /* Tamaño reducido del header y logotipo al hacer scroll */
 header.navbar.scrolled {
-    padding: 10px 0;
+    padding: 5px 0; /* Reduce el padding para hacer el header más pequeño */
     transition: all 0.3s ease; 
 }
 
 header.navbar.scrolled .qr-logo {
-    width: 180px;
+    width: 150px; /* Reduce el tamaño del logo */
     transition: width 0.3s ease;
 }
-
 
 /* BUTTONS */
 
