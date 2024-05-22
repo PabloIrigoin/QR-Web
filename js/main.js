@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
           entry.target.style.animationDelay = delay;
         }
 
+        // Deja de observar el elemento después de la primera animación
         observer.unobserve(entry.target);
       }
     });
@@ -29,22 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
   elements.forEach((el) => {
     observer.observe(el);
   });
-
-  // Función para volver a observar los elementos cuando se hace scroll up
-  function reobserveElements() {
-    elements.forEach((el) => {
-      if (!el.classList.contains("animate__animated")) {
-        observer.observe(el);
-      } else {
-        el.classList.remove("animate__animated");
-        const animationClass = el.getAttribute("data-animation");
-        el.classList.remove(animationClass);
-      }
-    });
-  }
-
-  // Escucha el evento de scroll
-  window.addEventListener("scroll", reobserveElements);
 
   // Código para cerrar el menú desplegable al hacer clic en un enlace
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
@@ -79,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
       scrollToTargetAdjusted("quienes-somos");
     });
   }
-
 
   const OUR_SERVICES = document.getElementById("our-services");
   if (OUR_SERVICES) {

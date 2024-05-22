@@ -254,7 +254,7 @@ button.navbar-toggler:focus {
 /* LAYOUT */
 
 .content-wrap {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .images-qs {
@@ -550,7 +550,7 @@ footer {
         padding-bottom: 30px;
     }
     .content-wrap {
-        padding: 40px 0px;
+        padding: 80px 0px;
     }
 
     .icon-down-custom {
