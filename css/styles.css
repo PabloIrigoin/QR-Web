@@ -67,6 +67,7 @@ html {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    position: relative;
 }
 
 .background-container {
@@ -256,7 +257,7 @@ button.navbar-toggler:focus {
 
 .content-wrap {
     position: relative;
-    padding: 115px 0;
+    padding: 80px 0;
     overflow: hidden;
 }
 
@@ -271,6 +272,15 @@ button.navbar-toggler:focus {
     border-top: 1px solid  !important;
     border-color: var(--color-divider) !important;
 }
+
+/* ID MARKER */
+
+#quienes-somos, #servicios, #contactarnos {
+    position: absolute;
+    transform: translateY(-115px);
+}
+
+
 
 /* FORM */
 
@@ -483,7 +493,7 @@ footer {
         transition: width 0.3s ease;
     }
     .text-banner-container {
-        top: 50%;
+        top: 200px;
     }
 
     .icon-down-custom {
@@ -518,7 +528,7 @@ footer {
 
 @media (max-width: 576px) {
     .text-banner-container {
-        top: 30%;
+        top: 220px;
     }
     .title-banner {
         font-size: 46px;
@@ -545,6 +555,10 @@ footer {
         padding-bottom: 30px;
     }
 
+    .content-wrap {
+        padding: 30px 0px;
+    }
+
     .icon-down-custom {
         display: flex;
         width: 40px;
@@ -559,7 +573,7 @@ footer {
     
 }
 
-@media (max-height: 800px) {
+@media (max-height: 700px) {
     .icon-down-custom {
         display: none;
     }
