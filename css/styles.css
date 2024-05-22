@@ -277,17 +277,27 @@ button.navbar-toggler:focus {
 #quienes-somos {
     position: absolute;
     transform: translateY(-115px);
+    background-color: red;
+    width: 10px;
+    height: 10px;
 }
 
 #servicios {
     position: absolute;
     transform: translateY(-115px);
+    background-color: green;
+    width: 10px;
+    height: 10px;
 }
 
 #contactarnos {
     position: absolute;
     transform: translateY(-115px);
+    background-color: white;
+    width: 10px;
+    height: 10px;
 }
+
 
 /* FORM */
 
