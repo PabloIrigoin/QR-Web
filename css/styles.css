@@ -272,6 +272,23 @@ button.navbar-toggler:focus {
     border-color: var(--color-divider) !important;
 }
 
+/* ID MARKER */
+
+#quienes-somos {
+    position: absolute;
+    transform: translateY(-115px);
+}
+
+#servicios {
+    position: absolute;
+    transform: translateY(-115px);
+}
+
+#contactarnos {
+    position: absolute;
+    transform: translateY(-115px);
+}
+
 /* FORM */
 
 label {
