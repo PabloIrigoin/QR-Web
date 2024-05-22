@@ -1,68 +1,117 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Intersection Observer para animaciones al hacer scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    };
+document.addEventListener("DOMContentLoaded", function () {
+  // Intersection Observer para animaciones al hacer scroll
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1, // Trigger when 10% of the element is visible
+  };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Añade 'animate__animated' y la clase específica de animación
-                entry.target.classList.add('animate__animated');
-                const animationClass = entry.target.getAttribute('data-animation');
-                entry.target.classList.add(animationClass);
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Añade 'animate__animated' y la clase específica de animación
+        entry.target.classList.add("animate__animated");
+        const animationClass = entry.target.getAttribute("data-animation");
+        entry.target.classList.add(animationClass);
 
-                // Añade delay si existe
-                const delay = entry.target.getAttribute('data-delay');
-                if (delay) {
-                    entry.target.style.animationDelay = delay;
-                }
+        // Añade delay si existe
+        const delay = entry.target.getAttribute("data-delay");
+        if (delay) {
+          entry.target.style.animationDelay = delay;
+        }
 
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
 
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => {
+  const elements = document.querySelectorAll(".animate-on-scroll");
+  elements.forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Función para volver a observar los elementos cuando se hace scroll up
+  function reobserveElements() {
+    elements.forEach((el) => {
+      if (!el.classList.contains("animate__animated")) {
         observer.observe(el);
+      } else {
+        el.classList.remove("animate__animated");
+        const animationClass = el.getAttribute("data-animation");
+        el.classList.remove(animationClass);
+      }
     });
+  }
 
-    // Función para volver a observar los elementos cuando se hace scroll up
-    function reobserveElements() {
-        elements.forEach(el => {
-            if (!el.classList.contains('animate__animated')) {
-                observer.observe(el);
-            } else {
-                el.classList.remove('animate__animated');
-                const animationClass = el.getAttribute('data-animation');
-                el.classList.remove(animationClass);
-            }
-        });
-    }
+  // Escucha el evento de scroll
+  window.addEventListener("scroll", reobserveElements);
 
-    // Escucha el evento de scroll
-    window.addEventListener('scroll', reobserveElements);
+  // Código para cerrar el menú desplegable al hacer clic en un enlace
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  const navCollapse = document.querySelector(".navbar-collapse");
+  const navbarToggler = document.querySelector(".navbar-toggler");
 
-    // Código para cerrar el menú desplegable al hacer clic en un enlace
-    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    var navCollapse = document.querySelector('.navbar-collapse');
-    var navbarToggler = document.querySelector('.navbar-toggler');
-
-    navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-            navCollapse.classList.remove('show');
-            navbarToggler.classList.remove('collapsed'); // Volver a estado hamburguesa
-        });
+  navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      navCollapse.classList.remove("show");
+      navbarToggler.classList.remove("collapsed"); // Volver a estado hamburguesa
     });
+  });
 
-    navbarToggler.addEventListener('click', function () {
-        this.classList.toggle('collapsed');
-    });
+  navbarToggler.addEventListener("click", function () {
+    this.classList.toggle("collapsed");
+  });
 
-    navCollapse.addEventListener('hidden.bs.collapse', function () {
-        navbarToggler.classList.remove('collapsed'); // Volver a estado hamburguesa
+  navCollapse.addEventListener("hidden.bs.collapse", function () {
+    navbarToggler.classList.remove("collapsed"); // Volver a estado hamburguesa
+  });
+
+  const ABOUT_US = document.getElementById("about-us");
+  if (ABOUT_US) {
+    ABOUT_US.addEventListener("click", function () {
+      scrollToTargetAdjusted("quienes-somos");
     });
+  }
+
+  const ABOUT_DOWN = document.getElementById("arrow-down");
+  if (ABOUT_DOWN) {
+    ABOUT_DOWN.addEventListener("click", function () {
+      scrollToTargetAdjusted("quienes-somos");
+    });
+  }
+
+
+  const OUR_SERVICES = document.getElementById("our-services");
+  if (OUR_SERVICES) {
+    OUR_SERVICES.addEventListener("click", function () {
+      scrollToTargetAdjusted("servicios");
+    });
+  }
+
+  const CONTACT = document.getElementById("contact");
+  if (CONTACT) {
+    CONTACT.addEventListener("click", function () {
+      scrollToTargetAdjusted("contactarnos");
+    });
+  }
+
+  const CONTACT_2 = document.getElementById("contact-2");
+  if (CONTACT_2) {
+    CONTACT_2.addEventListener("click", function () {
+      scrollToTargetAdjusted("contactarnos");
+    });
+  }
+
 });
+
+function scrollToTargetAdjusted(elementName) {
+  const ELEMENT = document.getElementById(elementName);
+  const HEADER_OFF_SET = 87; // Si cambian la altura de la navbar, actualizar este valor
+  const ELEMENT_POSITION = ELEMENT.getBoundingClientRect().top;
+  const OFFSET_POSITION = ELEMENT_POSITION + window.scrollY - HEADER_OFF_SET;
+
+  window.scrollTo({
+    top: OFFSET_POSITION,
+    behavior: "smooth",
+  });
+}
