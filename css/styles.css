@@ -251,9 +251,7 @@ button.navbar-toggler:focus {
 /* LAYOUT */
 
 .content-wrap {
-    position: relative;
     padding: 80px 0;
-    overflow: hidden;
 }
 
 .images-qs {
@@ -549,7 +547,7 @@ footer {
         padding-bottom: 30px;
     }
     .content-wrap {
-        padding: 30px 0px;
+        padding: 40px 0px;
     }
 
     .icon-down-custom {
