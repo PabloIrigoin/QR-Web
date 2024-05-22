@@ -275,7 +275,6 @@ button.navbar-toggler:focus {
 /* ID MARKER */
 
 #quienes-somos {
-    position: absolute;
     transform: translateY(-115px);
     background-color: red;
     width: 10px;
@@ -283,7 +282,6 @@ button.navbar-toggler:focus {
 }
 
 #servicios {
-    position: absolute;
     transform: translateY(-115px);
     background-color: green;
     width: 10px;
@@ -291,7 +289,6 @@ button.navbar-toggler:focus {
 }
 
 #contactarnos {
-    position: absolute;
     transform: translateY(-115px);
     background-color: white;
     width: 10px;
