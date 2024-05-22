@@ -80,7 +80,7 @@ html {
 
 .icon-down-custom {
     width: 60px;
-    margin-bottom: 200px;
+    margin-bottom: 250px;
     color:var(--color-blue-low);
     transition: all 0.35s;
 }
