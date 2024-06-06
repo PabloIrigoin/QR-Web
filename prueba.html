@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Animation</title>
+    <style>
+        .wave-animation {
+            animation: wave 5s infinite ease-in-out;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            20% {
+                transform: translate(-5px, -5px) scale(1.05) rotate(-2deg);
+            }
+            40% {
+                transform: translate(5px, -5px) scale(0.95) rotate(2deg);
+            }
+            60% {
+                transform: translate(5px, 5px) scale(1.05) rotate(-2deg);
+            }
+            80% {
+                transform: translate(-5px, 5px) scale(0.95) rotate(2deg);
+            }
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="col-md-6 description-img">
+        <img class="img-fluid wave-animation" src="images/bubble.png" alt="">
+    </div>
+</body>
+</html>
