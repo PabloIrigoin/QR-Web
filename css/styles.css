@@ -21,11 +21,11 @@ a {
 }
 
 :root {
-    --color-main: #0533fb;
+    --color-main: #061df9;
     --color-background-main: #000730;
-    --color-button-main: #0533fb;
+    --color-button-main: #061df9;
     --color-button-main-hover: #ffffff;
-    --color-background-nav-main: rgba(0, 7, 48,.8);
+    --color-background-nav-main: rgba(0, 7, 48,.7);
     --color-divider: rgba(30, 0, 255, .8);
     --color-form-control-background: #000623;
     --color-background-flip: #0022b7;
@@ -46,7 +46,7 @@ a {
     --color-blue-low: #0087ff;
     --color-transparent: transparent;
     --flip-card-line: #5d7aff;
-    --flip-card-primary: #1943ff;
+    --flip-card-primary: #061df9;
     --flip-card-secondary: #001988;
 
 }
@@ -76,7 +76,7 @@ body {
 
 .icon-down-custom {
     width: 60px;
-    margin-bottom: 250px;
+    margin-bottom: 160px;
     color:var(--color-white);
     opacity: 50%;
     transition: all 0.35s;
@@ -257,7 +257,7 @@ button.navbar-toggler:focus {
 /* LAYOUT */
 
 .content-wrap {
-    padding: 100px 0;
+    padding: 40px 0;
 }
 
 .images-qs {
