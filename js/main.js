@@ -86,19 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Manejo del clic en las flip cards en dispositivos móviles
-  const flipContainers = document.querySelectorAll(".flip-container");
-
-  flipContainers.forEach((container) => {
-    container.addEventListener("click", function () {
-      flipContainers.forEach((otherContainer) => {
-        if (otherContainer !== this) {
-          otherContainer.classList.remove("hover");
-        }
-      });
-      this.classList.toggle("hover");
-    });
-  });
 });
 
 function scrollToTargetAdjusted(elementName) {
