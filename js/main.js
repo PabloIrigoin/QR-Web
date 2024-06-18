@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Intersection Observer para animaciones al hacer scroll
   const observerOptions = {
     root: null,
-    rootMargin: "0px"
+    rootMargin: "5% 0px", // Ajuste para asegurar que una parte significativa del elemento sea visible
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
