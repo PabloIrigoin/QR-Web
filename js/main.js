@@ -2,26 +2,37 @@ document.addEventListener("DOMContentLoaded", function () {
   // Intersection Observer para animaciones al hacer scroll
   const observerOptions = {
     root: null,
-    rootMargin: "0px",
-    threshold: 0.1, // Trigger when 10% of the element is visible
+    rootMargin: "0px"
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Añade 'animate__animated' y la clase específica de animación
-        entry.target.classList.add("animate__animated");
-        const animationClass = entry.target.getAttribute("data-animation");
-        entry.target.classList.add(animationClass);
+        // Comprueba si la animación ya se ha ejecutado
+        if (!entry.target.classList.contains('animated')) {
+          // Añade 'animate__animated' y la clase específica de animación
+          entry.target.classList.add("animate__animated");
+          const animationClass = entry.target.getAttribute("data-animation");
+          entry.target.classList.add(animationClass);
 
-        // Añade delay si existe
-        const delay = entry.target.getAttribute("data-delay");
-        if (delay) {
-          entry.target.style.animationDelay = delay;
+          // Añade la clase 'animated' para indicar que la animación se ha ejecutado
+          entry.target.classList.add('animated');
+
+          // Añade delay si existe
+          const delay = entry.target.getAttribute("data-delay");
+          if (delay) {
+            entry.target.style.animationDelay = delay;
+          }
+
+          // Calcula la duración total de la animación incluyendo el delay
+          const animationDuration = window.getComputedStyle(entry.target).animationDuration || '0s';
+          const totalDuration = (parseFloat(animationDuration) + parseFloat(delay || '0s')) * 1000;
+
+          // Usa setTimeout para dejar de observar después de que la animación se complete
+          setTimeout(() => {
+            observer.unobserve(entry.target);
+          }, totalDuration);
         }
-
-        // Deja de observar el elemento después de la primera animación
-        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
