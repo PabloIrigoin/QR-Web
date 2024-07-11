@@ -143,7 +143,8 @@ document
       },
     })
       .then((response) => {
-        window.location.href("/success.html")
+        console.log(response);
+        window.location.href = "/success.html";
       })
       .catch((error) => {
         console.error("Error:", error);
