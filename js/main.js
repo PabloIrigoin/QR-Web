@@ -110,3 +110,43 @@ function scrollToTargetAdjusted(elementName) {
     behavior: "smooth",
   });
 }
+
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+    const messageInput = document.getElementById('message');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+
+    const body = {
+      to: [
+        {
+          name: `Soporte QR`,
+          address: "romina@qrsolutions.com.ar",
+        },
+      ],
+      from: emailInput.value.trim(),
+      data: {
+        message: messageInput.value.trim(),
+        subject: `Contacto desde el sitio de QR de ${nameInput.value.trim()}`,
+      },
+      methods: ["EMAIL"],
+    };
+
+    fetch("https://api-ar.develop-redremax.com/notifications/api/notification/webqr", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        window.location.href("/success.html")
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Hubo un problema al enviar el formulario");
+      });
+  });
