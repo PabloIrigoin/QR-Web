@@ -144,7 +144,7 @@ document
     })
       .then((response) => {
         console.log(response);
-        window.location.href = "/success.html";
+        window.location.href = "/QR-Web/success"; //TODO: cambiar para cuando se deploye en un repo dedicado de QR
       })
       .catch((error) => {
         console.error("Error:", error);
