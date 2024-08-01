@@ -150,4 +150,35 @@ document
         console.error("Error:", error);
         alert("Hubo un problema al enviar el formulario");
       });
+
+      function onSubmit(token) {
+        // Aquí puedes hacer el POST a tu backend
+        verifyRecaptcha(token);
+      }
+    
+      function verifyRecaptcha(token) {
+        const secret = "6Le7bh0qAAAAAOgRmkGLmPCjNj8iDIcFiHO2t3xS";
+        const response = token;
+    
+        fetch("https://www.google.com/recaptcha/api/siteverify", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `secret=${secret}&response=${response}`
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Si el reCAPTCHA es válido, envía el formulario
+            document.getElementById("contactForm").submit();
+          } else {
+            // Si el reCAPTCHA no es válido, muestra un error
+            alert("La verificación de reCAPTCHA falló. Por favor, inténtalo de nuevo.");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+      }
   });
