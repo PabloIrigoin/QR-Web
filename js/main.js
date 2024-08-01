@@ -150,4 +150,4 @@ document
         console.error("Error:", error);
         alert("Hubo un problema al enviar el formulario");
       });
-  });
+    })
