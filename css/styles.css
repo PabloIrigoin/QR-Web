@@ -501,6 +501,11 @@ label {
     }
 }
 
+/* RECAPTCHA */
+
+.grecaptcha-badge {
+    display: none !important;
+}
 
 /* FOOTER */
 
