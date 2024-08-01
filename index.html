@@ -40,6 +40,7 @@
     <title>QR Solutions</title>
 </head>
 <body>
+
     <header class="navbar navbar-expand-lg">
         <nav class="container justify-content-between">
             <a class="navbar-brand" href="index.html">
@@ -200,7 +201,7 @@
                             <label for="message" class="form-label">Descripción</label>
                             <textarea id="message" class="form-control" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn-main w-100 mt-3">Enviar</button>
+                        <button class="g-recaptcha btn-main w-100 mt-3" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit' type="submit" >Enviar</button>
                       </form>
                 </div>
             </div>
@@ -241,8 +242,13 @@
                 document.body.appendChild(js);
             })();
         </script>
-    <!-- END Botmaker Webchat-->
-    
+        <script>
+            function onSubmit(token) {
+              document.getElementById("contactForm").submit();
+            }
+          </script>
+    <!-- Recaptcha-->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <!-- JavaScript Main Site-->
     <script src="js/main.js"></script>
     <!-- Bootstrap Bundle with Popper -->
