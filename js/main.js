@@ -124,7 +124,7 @@ document
       to: [
         {
           name: `Soporte QR`,
-          address: "pabloirigoin@gmail.com",
+          address: "",
         },
       ],
       from: emailInput.value.trim(),
@@ -150,4 +150,4 @@ document
         console.error("Error:", error);
         alert("Hubo un problema al enviar el formulario");
       });
-    })
+  });
