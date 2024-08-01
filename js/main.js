@@ -87,13 +87,16 @@ document.addEventListener("DOMContentLoaded", function () {
     CONTACT_2.addEventListener("click", function () {
       scrollToTargetAdjusted("contactarnos");
     });
-  }
+  });
 
   document
     .getElementById("contactForm")
     .addEventListener("submit", function (event) {
       event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
-      grecaptcha.execute(); // Ejecuta reCAPTCHA v3
+      grecaptcha.execute('6Le7bh0qAAAAAOgRmkGLmPCjNj8iDIcFiHO2t3xS', {action: 'submit'})
+        .then(function(token) {
+          onSubmit(token);
+        });
     });
 });
 
