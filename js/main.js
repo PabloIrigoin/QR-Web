@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     CONTACT_2.addEventListener("click", function () {
       scrollToTargetAdjusted("contactarnos");
     });
-  });
+  };
 
   document
     .getElementById("contactForm")
