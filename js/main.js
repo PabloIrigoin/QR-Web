@@ -124,7 +124,7 @@ document
       to: [
         {
           name: `Soporte QR`,
-          address: "",
+          address: "pabloirigoin@gmail.com",
         },
       ],
       from: emailInput.value.trim(),
