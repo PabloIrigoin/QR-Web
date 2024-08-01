@@ -8,27 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Comprueba si la animación ya se ha ejecutado
         if (!entry.target.classList.contains('animated')) {
-          // Añade 'animate__animated' y la clase específica de animación
           entry.target.classList.add("animate__animated");
           const animationClass = entry.target.getAttribute("data-animation");
           entry.target.classList.add(animationClass);
-
-          // Añade la clase 'animated' para indicar que la animación se ha ejecutado
           entry.target.classList.add('animated');
 
-          // Añade delay si existe
           const delay = entry.target.getAttribute("data-delay");
           if (delay) {
             entry.target.style.animationDelay = delay;
           }
 
-          // Calcula la duración total de la animación incluyendo el delay
           const animationDuration = window.getComputedStyle(entry.target).animationDuration || '0s';
           const totalDuration = (parseFloat(animationDuration) + parseFloat(delay || '0s')) * 1000;
 
-          // Usa setTimeout para dejar de observar después de que la animación se complete
           setTimeout(() => {
             observer.unobserve(entry.target);
           }, totalDuration);
@@ -42,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(el);
   });
 
-  // Código para cerrar el menú desplegable al hacer clic en un enlace
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   const navCollapse = document.querySelector(".navbar-collapse");
   const navbarToggler = document.querySelector(".navbar-toggler");
@@ -50,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   navLinks.forEach(function (link) {
     link.addEventListener("click", function () {
       navCollapse.classList.remove("show");
-      navbarToggler.classList.remove("collapsed"); // Volver a estado hamburguesa
+      navbarToggler.classList.remove("collapsed");
     });
   });
 
@@ -59,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   navCollapse.addEventListener("hidden.bs.collapse", function () {
-    navbarToggler.classList.remove("collapsed"); // Volver a estado hamburguesa
+    navbarToggler.classList.remove("collapsed");
   });
 
   const ABOUT_US = document.getElementById("about-us");
@@ -97,6 +89,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+      grecaptcha.execute(); // Ejecuta reCAPTCHA v3
+    });
 });
 
 function scrollToTargetAdjusted(elementName) {
@@ -111,74 +109,67 @@ function scrollToTargetAdjusted(elementName) {
   });
 }
 
-document
-  .getElementById("contactForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+function onSubmit(token) {
+  verifyRecaptcha(token);
+}
 
-    const messageInput = document.getElementById('message');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
+function verifyRecaptcha(token) {
+  const secret = "6Le7bh0qAAAAAOgRmkGLmPCjNj8iDIcFiHO2t3xS";
+  const response = token;
 
-    const body = {
-      to: [
-        {
-          name: `Soporte QR`,
-          address: "pabloirigoin@gmail.com",
-        },
-      ],
-      from: emailInput.value.trim(),
-      data: {
-        message: messageInput.value.trim(),
-        subject: `Contacto desde el sitio de QR de ${nameInput.value.trim()}`,
-      },
-      methods: ["EMAIL"],
-    };
-
-    fetch("https://api-ar.develop-redremax.com/notifications/api/notification/webqr", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        window.location.href = "/QR-Web/success"; //TODO: cambiar para cuando se deploye en un repo dedicado de QR
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Hubo un problema al enviar el formulario");
-      });
-
-      function onSubmit(token) {
-        // Aquí puedes hacer el POST a tu backend
-        verifyRecaptcha(token);
-      }
-    
-      function verifyRecaptcha(token) {
-        const secret = "6Le7bh0qAAAAAOgRmkGLmPCjNj8iDIcFiHO2t3xS";
-        const response = token;
-    
-        fetch("https://www.google.com/recaptcha/api/siteverify", {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: `secret=${secret}&response=${response}`
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            // Si el reCAPTCHA es válido, envía el formulario
-            document.getElementById("contactForm").submit();
-          } else {
-            // Si el reCAPTCHA no es válido, muestra un error
-            alert("La verificación de reCAPTCHA falló. Por favor, inténtalo de nuevo.");
-          }
-        })
-        .catch(error => {
-          console.error("Error:", error);
-        });
-      }
+  fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `secret=${secret}&response=${response}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      sendEmail();
+    } else {
+      alert("La verificación de reCAPTCHA falló. Por favor, inténtalo de nuevo.");
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
   });
+}
+
+function sendEmail() {
+  const messageInput = document.getElementById('message');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+
+  const body = {
+    to: [
+      {
+        name: `Soporte QR`,
+        address: "pabloirigoin@gmail.com",
+      },
+    ],
+    from: emailInput.value.trim(),
+    data: {
+      message: messageInput.value.trim(),
+      subject: `Contacto desde el sitio de QR de ${nameInput.value.trim()}`,
+    },
+    methods: ["EMAIL"],
+  };
+
+  fetch("https://api-ar.develop-redremax.com/notifications/api/notification/webqr", {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => {
+    console.log(response);
+    window.location.href = "/QR-Web/success"; //TODO: cambiar para cuando se deploye en un repo dedicado de QR
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    alert("Hubo un problema al enviar el formulario");
+  });
+}
