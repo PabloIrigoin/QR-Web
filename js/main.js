@@ -160,21 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Validación en tiempo real para nombre
-  const nameInput = document.getElementById('name');
-  nameInput.addEventListener('input', function () {
-    const nameValue = nameInput.value.trim();
-    const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Solo letras y espacios
-    const nameWords = nameValue.split(/\s+/).filter(Boolean);
-
-    if (!nameValue || !nameRegex.test(nameValue) || nameWords.length < 2) {
-      nameInput.classList.add('is-invalid');
-      nameInput.classList.remove('is-valid');
-    } else {
-      nameInput.classList.remove('is-invalid');
-      nameInput.classList.add('is-valid');
-    }
-  });
+  // No validación en tiempo real para nombre, para que solo se aplique al enviar el formulario
 });
 
 function scrollToTargetAdjusted(elementName) {
