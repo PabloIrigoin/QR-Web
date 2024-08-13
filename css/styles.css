@@ -306,19 +306,6 @@ label {
     box-shadow: none;  
 }
 
-/* TOOLTIPS FORM */
-
-.tooltip {
-    display: none;
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.input-error {
-    border-color: red;
-}
-
 /* FLIP CARDS*/
 
 .flip-container {

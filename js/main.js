@@ -153,40 +153,17 @@
 //   });
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("contactForm").addEventListener("submit", function (event) {
-      event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+  const form = document.getElementById('contactForm');
 
-      const messageInput = document.getElementById('message');
-      const nameInput = document.getElementById('name');
-      const emailInput = document.getElementById('email');
+  form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
 
-      let valid = true;
+      if (form.checkValidity()) {
+          const messageInput = document.getElementById('message');
+          const nameInput = document.getElementById('name');
+          const emailInput = document.getElementById('email');
 
-      // Validación de nombre
-      if (!nameInput.value.trim()) {
-          valid = false;
-          showTooltip(nameInput, "tooltip-name");
-      } else {
-          hideTooltip("tooltip-name");
-      }
-
-      // Validación de email
-      if (!emailInput.value.trim() || !validateEmail(emailInput.value.trim())) {
-          valid = false;
-          showTooltip(emailInput, "tooltip-email");
-      } else {
-          hideTooltip("tooltip-email");
-      }
-
-      // Validación de mensaje
-      if (!messageInput.value.trim()) {
-          valid = false;
-          showTooltip(messageInput, "tooltip-message");
-      } else {
-          hideTooltip("tooltip-message");
-      }
-
-      if (valid) {
           const body = {
               to: [
                   {
@@ -218,21 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   alert("Hubo un problema al enviar el formulario");
               });
       }
-  });
 
-  function showTooltip(inputElement, tooltipId) {
-      const tooltip = document.getElementById(tooltipId);
-      tooltip.style.display = "block";
-      inputElement.classList.add("input-error");
-  }
-
-  function hideTooltip(tooltipId) {
-      const tooltip = document.getElementById(tooltipId);
-      tooltip.style.display = "none";
-  }
-
-  function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-      return re.test(String(email).toLowerCase());
-  }
+      form.classList.add('was-validated');
+  }, false);
 });
