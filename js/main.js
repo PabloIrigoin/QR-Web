@@ -194,8 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
                   console.error("Error:", error);
                   alert("Hubo un problema al enviar el formulario");
               });
+      } else {
+          form.classList.add('was-validated');
       }
-
-      form.classList.add('was-validated');
   }, false);
 });
+
