@@ -216,3 +216,4 @@ function scrollToTargetAdjusted(elementName) {
       behavior: "smooth",
   });
 }
+
